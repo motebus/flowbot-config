@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+   flowbot:
+     build: .
+     image: bot/flowbot
+     container_name: flowbot
+     network_mode: host
+     environment:
+       - MOTEBUS_GATEWAY=${MOTEBUS_GATEWAY}
+     volumes:
+       - motechat:/data/.node-red/.node-red-contrib-motechat
+       - flow:/data/.node-red/flow.json
+
+   motebus:
+    image: motebus/motebus
+    container_name: motebus
+    network_mode: host
+    
+volumes:
+  motechat:
+  flow:
